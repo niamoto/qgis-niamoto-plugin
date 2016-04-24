@@ -1,0 +1,9 @@
+[general]
+name=qgis-ncbif-occfinder
+email=dimitri.justeau@gmail.com
+author=Dimitri Justeau (IAC/AMAP)
+qgisMinimumVersion=2.0
+description=Load occurrences layers from ncbif web services.
+about=Developed in New Caledonia by IAC/AMAP
+version=version 0.1
+
