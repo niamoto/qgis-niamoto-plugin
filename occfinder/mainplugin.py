@@ -1,14 +1,11 @@
 # coding: utf-8
 
-import json
-import os
 import urllib
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from qgis.core import *
 
-from occfinder import PACKAGE_ROOT
 from occfinder.fetch_data import fetch_taxa_flat_tree, build_nested_tree
 from occfinder.modelview import TaxonTreeItemModel
 from occfinder.ui.taxon_dock import Ui_TaxonTreeWidget
@@ -27,10 +24,6 @@ class OccFinder(object):
         self.taxon_dock.setWidget(self.taxon_tree_widget)
 
     def initGui(self):
-        # self.menu_action = QAction('occfinder', None)
-        # self.menu_action.setObjectName('occfinder')
-        # QObject.connect(self.menu_action, SIGNAL('triggered()'), self.run)
-        # self.iface.addPluginToMenu('occfinder', self.menu_action)
         self.iface.addDockWidget(Qt.RightDockWidgetArea, self.taxon_dock)
 
     def run(self):
