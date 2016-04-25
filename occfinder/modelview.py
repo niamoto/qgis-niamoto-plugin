@@ -5,7 +5,7 @@ import re
 from PyQt4.QtCore import *
 
 
-LEVEL_LABELS = {
+RANK_LABELS = {
     'FAMILY': u'Famille',
     'GENUS': u'Genre',
     'SPECIE': u'Espèce',
@@ -18,8 +18,8 @@ class TaxonNode(object):
     def __init__(self, taxon_dict, parent=None, match_pattern=''):
         self.id = taxon_dict['id']
         self.full_name = taxon_dict['full_name']
-        self.level_name = taxon_dict['level_name']
-        self.level = taxon_dict['level']
+        self.rank_name = taxon_dict['rank_name']
+        self.rank = taxon_dict['rank']
         self.parent = parent
         self.match_pattern = re.compile(".*{}.*".format(match_pattern))
         match = self.match_pattern.match(self.full_name.lower())
@@ -135,7 +135,7 @@ class TaxonTreeItemModel(QAbstractItemModel):
         if role == Qt.DisplayRole and index.column() == 0:
             return node.full_name
         if role == Qt.DisplayRole and index.column() == 1:
-            return LEVEL_LABELS[node.level]
+            return RANK_LABELS[node.rank]
         return None
 
     def headerData(self, section, orientation, role=Qt.DisplayRole):
