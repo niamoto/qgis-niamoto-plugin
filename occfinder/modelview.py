@@ -21,7 +21,7 @@ class TaxonNode(object):
         self.rank_name = taxon_dict['rank_name']
         self.rank = taxon_dict['rank']
         self.parent = parent
-        self.match_pattern = re.compile(".*{}.*".format(match_pattern))
+        self.match_pattern = re.compile(".*{}.*".format(match_pattern.lower()))
         match = self.match_pattern.match(self.full_name.lower())
         self.matching = match is not None
         self.children = list()
@@ -52,7 +52,7 @@ class TaxonNode(object):
         return [c for c in self.children if c.has_matching_child()]
 
     def update_matching(self, match_pattern=''):
-        self.match_pattern = re.compile(".*{}.*".format(match_pattern))
+        self.match_pattern = re.compile(".*{}.*".format(match_pattern.lower()))
         match = self.match_pattern.match(self.full_name.lower())
         self.matching = match is not None
         for c in self.children:
