@@ -6,7 +6,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from qgis.core import *
 
-from occfinder.fetch_data import fetch_taxa_flat_tree, build_nested_tree
+from occfinder.fetch_data import get_taxa_tree
 from occfinder.modelview import TaxonTreeItemModel
 from occfinder.ui.taxon_dock import Ui_TaxonTreeWidget
 from utils import log
@@ -40,7 +40,7 @@ class TaxonTreeWidget(QWidget, Ui_TaxonTreeWidget):
         self.setupUi(self)
         self.iface = iface
         log("Loading taxon tree...")
-        root_items = build_nested_tree(fetch_taxa_flat_tree())
+        root_items = get_taxa_tree()
         self.taxon_tree_model = TaxonTreeItemModel(root_items)
         self.taxon_treeview.setModel(self.taxon_tree_model)
         self.filter_button.clicked.connect(self.change_pattern)
