@@ -1,12 +1,9 @@
 # coding: utf-8
 
 import sys
-import os
-import json
 
-from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-from occfinder.mainplugin import TaxonTreeWidget
+from niamoto_plugin.mainplugin import TaxonTreeWidget
 
 
 def main(args):

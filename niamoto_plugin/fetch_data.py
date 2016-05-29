@@ -7,11 +7,11 @@ from collections import OrderedDict
 
 import requests
 
-from occfinder import DATA_PATH
-from occfinder.utils import log
+from niamoto_plugin import DATA_PATH
+from niamoto_plugin.utils import log
 
 
-NCBIF_REST_BASE_URL = u"http://127.0.0.1:8000/api/1.0/"
+NIAMOTO_REST_BASE_URL = u"http://127.0.0.1:8000/api/1.0/"
 
 DATABASE_VERSION = os.path.join(DATA_PATH, u'database_version.txt')
 TAXA_TREE_PATH = os.path.join(DATA_PATH, u'taxa_tree.json')
@@ -46,12 +46,12 @@ def get_taxa_tree():
 
 def _fetch_database_server_version():
     """
-    Fetch the ncbif rest server to get the currently active database version.
+    Fetch the niamoto rest server to get the currently active database version.
     :return: The uuid of the active database version in the server.
     """
     session = requests.Session()
     url = urlparse.urljoin(
-        NCBIF_REST_BASE_URL,
+        NIAMOTO_REST_BASE_URL,
         u"plantnote_database/?active=True"
     )
     r = session.get(url)
@@ -87,10 +87,10 @@ def _get_local_taxa_tree():
 
 def _get_taxa_flat_tree_from_server():
     """
-    Download the currently active flat taxa tree in the ncbif server.
+    Download the currently active flat taxa tree in the niamoto server.
     :return: The flat taxa tree as an array.
     """
-    flat_tree_url = NCBIF_REST_BASE_URL + u"taxon/"
+    flat_tree_url = NIAMOTO_REST_BASE_URL + u"taxon/"
     session = requests.Session()
     flat_tree = session.get(flat_tree_url)
     return json.loads(flat_tree.text)

@@ -4,4 +4,4 @@ from qgis.core import *
 
 
 def log(msg):
-    QgsMessageLog.logMessage(msg, 'occfinder')
+    QgsMessageLog.logMessage(msg, 'niamoto_plugin')

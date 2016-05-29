@@ -9,5 +9,5 @@ DATA_PATH = os.path.join(PACKAGE_ROOT, u"data")
 
 
 def classFactory(iface):
-    from mainplugin import OccFinder
-    return OccFinder(iface)
+    from mainplugin import NiamotoPlugin
+    return NiamotoPlugin(iface)

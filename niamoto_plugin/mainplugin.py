@@ -6,20 +6,20 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from qgis.core import *
 
-from occfinder.fetch_data import get_taxa_tree
-from occfinder.modelview import TaxonTreeItemModel
-from occfinder.ui.taxon_dock import Ui_TaxonTreeWidget
+from niamoto_plugin.fetch_data import get_taxa_tree
+from niamoto_plugin.modelview import TaxonTreeItemModel
+from niamoto_plugin.ui.taxon_dock import Ui_TaxonTreeWidget
 from utils import log
 
 
 GEOSERVER_BASE_URL = "http://localhost:8080/geoserver"
 
 
-class OccFinder(object):
+class NiamotoPlugin(object):
 
     def __init__(self, iface):
         self.iface = iface
-        self.taxon_dock = QDockWidget("occfinder")
+        self.taxon_dock = QDockWidget("niamoto_plugin")
         self.taxon_tree_widget = TaxonTreeWidget(self.iface)
         self.taxon_dock.setWidget(self.taxon_tree_widget)
 
