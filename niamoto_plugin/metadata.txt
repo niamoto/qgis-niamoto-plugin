@@ -6,4 +6,3 @@ qgisMinimumVersion=2.0
 description=Load occurrences layers from niamoto web services.
 about=Developed in New Caledonia by IAC/AMAP
 version=version 0.1
-
