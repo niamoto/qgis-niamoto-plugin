@@ -10,6 +10,7 @@ import requests
 from occfinder import DATA_PATH
 from occfinder.utils import log
 
+
 NCBIF_REST_BASE_URL = u"http://127.0.0.1:8000/api/1.0/"
 
 DATABASE_VERSION = os.path.join(DATA_PATH, u'database_version.txt')
