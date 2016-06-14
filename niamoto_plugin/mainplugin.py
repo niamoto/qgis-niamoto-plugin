@@ -9,10 +9,11 @@ from qgis.core import *
 from niamoto_plugin.fetch_data import get_taxa_tree
 from niamoto_plugin.modelview import TaxonTreeItemModel
 from niamoto_plugin.ui.taxon_dock import Ui_TaxonTreeWidget
+from niamoto_plugin import settings
 from utils import log
 
 
-GEOSERVER_BASE_URL = "http://localhost:8080/geoserver"
+GEOSERVER_BASE_URL = settings.GEOSERVER_BASE_URL
 
 
 class NiamotoPlugin(object):
@@ -89,14 +90,13 @@ class TaxonTreeWidget(QWidget, Ui_TaxonTreeWidget):
         QgsMapLayerRegistry.instance().addMapLayer(vlayer)
 
     def add_wfs_layer_all_taxons(self):
-        log("Adding wfs layer for all taxons"
-            .format(self.current_taxon.full_name))
+        log("Adding wfs layer for all taxons")
         params = {
             'service': 'WFS',
             'version': '1.0.0',
             'request': 'GetFeature',
             'srsname': 'EPSG:4326',
-            'typename': 'pn_forests_portal:occurrences_for_taxon',
+            'typename': 'niamoto:occurrence_taxon_descendants',
         }
         uri = GEOSERVER_BASE_URL + '/wfs?' \
             + urllib.unquote(urllib.urlencode(params))
@@ -110,7 +110,7 @@ class TaxonTreeWidget(QWidget, Ui_TaxonTreeWidget):
             'version': '1.0.0',
             'request': 'GetFeature',
             'srsname': 'EPSG:4326',
-            'typename': 'pn_forests_portal:occurrences_for_taxon',
+            'typename': 'niamoto:occurrence_taxon_descendants',
             'viewparams': 'id_taxon:{}'.format(self.current_taxon.id),
         }
         uri = GEOSERVER_BASE_URL + '/wfs?' \

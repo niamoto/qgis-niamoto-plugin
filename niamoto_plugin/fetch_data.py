@@ -7,14 +7,14 @@ from collections import OrderedDict
 
 import requests
 
-from niamoto_plugin import DATA_PATH
 from niamoto_plugin.utils import log
+from niamoto_plugin import settings
 
 
-NIAMOTO_REST_BASE_URL = u"http://127.0.0.1:8000/api/1.0/"
+NIAMOTO_REST_BASE_URL = settings.NIAMOTO_REST_BASE_URL
 
-DATABASE_VERSION = os.path.join(DATA_PATH, u'database_version.txt')
-TAXA_TREE_PATH = os.path.join(DATA_PATH, u'taxa_tree.json')
+DATABASE_VERSION = settings.DATABASE_VERSION_PATH
+TAXA_TREE_PATH = settings.TAXA_TREE_PATH
 
 
 def get_taxa_tree():

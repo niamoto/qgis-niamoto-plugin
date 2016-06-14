@@ -70,8 +70,4 @@ target/
 
 data
 
-settings.py
-
-/pn_forests_portal/site_media/static
-/pn_forests_portal/site_media/media/occurrences_export/*
 *.ptx
