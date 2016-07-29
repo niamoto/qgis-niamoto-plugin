@@ -36,7 +36,7 @@ NIAMOTO_REST_BASE_URL = SETTINGS.get(
 
 GEOSERVER_BASE_URL = SETTINGS.get(
     "GEOSERVER_BASE_URL",
-    u"http://niamoto.ird.nc:8080/geoserver"
+    u"http://geoniamoto.ird.nc/geoserver/niamoto"
 )
 
 DATABASE_VERSION_PATH = SETTINGS.get(
