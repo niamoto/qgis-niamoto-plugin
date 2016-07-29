@@ -5,6 +5,7 @@ import urllib
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from qgis.core import *
+from requests import ConnectionError
 
 from niamoto_plugin.fetch_data import get_taxa_tree
 from niamoto_plugin.modelview import TaxonTreeItemModel
@@ -18,11 +19,49 @@ GEOSERVER_BASE_URL = settings.GEOSERVER_BASE_URL
 
 class NiamotoPlugin(object):
 
+    CONNECTION_FAILED_TEXT = \
+        u"""
+        Ahou pardon! La connection au serveur a échoué, vérifiez votre,
+        connection internet. Si malgré ça le problème persiste, contactez les
+        développeurs de niamoto.
+        """
+    RETRY_CONNECTION_TEXT = u"Retenter la connection"
+
     def __init__(self, iface):
         self.iface = iface
-        self.taxon_dock = QDockWidget("niamoto_plugin")
-        self.taxon_tree_widget = TaxonTreeWidget(self.iface)
-        self.taxon_dock.setWidget(self.taxon_tree_widget)
+        self.taxon_dock = QDockWidget("Niamoto Plugin")
+        self.taxon_tree_widget = None
+        self.connection_failed_widget = None
+        self.retry_button = None
+        self.init_connection_failed_widget()
+        self.init_taxon_widget()
+
+    def init_taxon_widget(self):
+        try:
+            self.retry_button.setEnabled(False)
+            self.taxon_tree_widget = TaxonTreeWidget(self.iface)
+            self.taxon_dock.setWidget(self.taxon_tree_widget)
+        except (ConnectionError, Exception):
+            log(u"Connection failed!")
+            self.retry_button.setEnabled(True)
+            self.taxon_dock.setWidget(self.connection_failed_widget)
+
+    def init_connection_failed_widget(self):
+        label = QLabel(self.CONNECTION_FAILED_TEXT)
+        self.retry_button = QPushButton(self.RETRY_CONNECTION_TEXT)
+        self.retry_button.clicked.connect(self.init_taxon_widget)
+        layout = QVBoxLayout()
+        spacer = QSpacerItem(
+            10, 10,
+            QSizePolicy.MinimumExpanding,
+            QSizePolicy.Expanding
+        )
+        layout.addItem(spacer)
+        layout.addWidget(label)
+        layout.addWidget(self.retry_button)
+        layout.addItem(QSpacerItem(spacer))
+        self.connection_failed_widget = QWidget()
+        self.connection_failed_widget.setLayout(layout)
 
     def initGui(self):
         self.iface.addDockWidget(Qt.RightDockWidgetArea, self.taxon_dock)
