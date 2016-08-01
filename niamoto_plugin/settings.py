@@ -48,3 +48,12 @@ TAXA_TREE_PATH = SETTINGS.get(
     "TAXA_TREE_PATH",
     os.path.join(DATA_PATH, u'taxa_tree.json')
 )
+
+LOG_PATH = SETTINGS.get(
+    "LOG_PATH",
+    os.path.join(PACKAGE_ROOT, u"log")
+)
+
+# Create data dir if not exists
+if not os.path.isdir(DATA_PATH):
+    os.makedirs(DATA_PATH)
