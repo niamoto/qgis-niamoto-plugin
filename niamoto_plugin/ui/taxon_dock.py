@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'niamoto_plugin/ui/taxon_dock.ui'
+# Form implementation generated from reading ui file 'ui/taxon_dock.ui'
 #
-# Created: Tue Jun 14 10:48:39 2016
+# Created: Mon Aug  8 15:58:11 2016
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -92,9 +92,6 @@ class Ui_TaxonTreeWidget(object):
         self.all_occurrences_button.setObjectName(_fromUtf8("all_occurrences_button"))
         self.verticalLayout.addWidget(self.all_occurrences_button)
         self.tabWidget.addTab(self.occurrences_tab, _fromUtf8(""))
-        self.massifs_tab = QtGui.QWidget()
-        self.massifs_tab.setObjectName(_fromUtf8("massifs_tab"))
-        self.tabWidget.addTab(self.massifs_tab, _fromUtf8(""))
         self.verticalLayout_2.addWidget(self.tabWidget)
 
         self.retranslateUi(TaxonTreeWidget)
@@ -110,5 +107,4 @@ class Ui_TaxonTreeWidget(object):
         self.wfs_button.setText(_translate("TaxonTreeWidget", "Ajouter la couche du taxon", None))
         self.all_occurrences_button.setText(_translate("TaxonTreeWidget", "Ajouter toutes les occurrences", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.occurrences_tab), _translate("TaxonTreeWidget", "Occurrences", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.massifs_tab), _translate("TaxonTreeWidget", "Massifs", None))
 

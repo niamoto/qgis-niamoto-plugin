@@ -35,3 +35,12 @@ def log(msg):
 
 def get_logger():
     return LOGGER
+
+
+def construct_wfs_uri(url, typename, **kwargs):
+    params = {
+        'url': url,
+        'typename': typename
+    }
+    params.update(kwargs)
+    return ' '.join(['{}="{}"'.format(k, v) for k, v in params.items()])
