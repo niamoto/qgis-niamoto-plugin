@@ -90,6 +90,7 @@ class TaxonTreeWidget(QWidget, Ui_TaxonTreeWidget):
         selection_model = self.taxon_treeview.selectionModel()
         selection_model.currentChanged.connect(self.current_taxon_changed)
         self.wfs_button.clicked.connect(self.add_wfs_layer)
+        self.taxon_treeview.doubleClicked.connect(self.add_wfs_layer)
         self.all_occurrences_button.clicked \
             .connect(self.add_wfs_layer_all_taxons)
         self.expand_button.clicked.connect(self.taxon_treeview.expandAll)
