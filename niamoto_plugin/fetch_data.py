@@ -52,7 +52,7 @@ def _fetch_database_server_version():
     session = requests.Session()
     url = urlparse.urljoin(
         NIAMOTO_REST_BASE_URL,
-        u"plantnote_database/?active=True"
+        u"plantnote/plantnote_database/?active=True"
     )
     r = session.get(url)
     db = json.loads(r.text)['results'][0]
@@ -90,7 +90,7 @@ def _get_taxa_flat_tree_from_server():
     Download the currently active flat taxa tree in the niamoto server.
     :return: The flat taxa tree as an array.
     """
-    flat_tree_url = NIAMOTO_REST_BASE_URL + u"taxon/"
+    flat_tree_url = NIAMOTO_REST_BASE_URL + u"data/taxon/"
     session = requests.Session()
     flat_tree = session.get(flat_tree_url)
     return json.loads(flat_tree.text)
@@ -109,4 +109,3 @@ def _build_nested_tree(flat_tree):
         if tax['parent'] is None:
             final_tax.append(tax)
     return final_tax
-
