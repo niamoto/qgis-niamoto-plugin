@@ -55,7 +55,7 @@ def _fetch_database_server_version():
         u"plantnote_database/?active=True"
     )
     r = session.get(url)
-    db = json.loads(r.text)[0]
+    db = json.loads(r.text)['results'][0]
     return db['uuid']
 
 
