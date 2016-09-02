@@ -61,12 +61,12 @@ NIAMOTO_OAUTH2_TOKEN_URL = SETTINGS.get(
 
 OAUTH2_CLIENT_ID = SETTINGS.get(
     "OAUTH2_CLIENT_ID",
-    "abc"
+    "ystnxvD5Sjnd7UtAV3Qj3Hou8ZKAZtlzJEnHySoX"
 )
 
 OAUTH2_CLIENT_SECRET = SETTINGS.get(
     "OAUTH2_CLIENT_SECRET",
-    "abc"
+    "5HAIZVFjFF0MlK1CJE4tfHbNk734qqyxZ9XLz20ZvtQbrxd61gIhQ6FhyW0jxju26GTJtbhxJP6oTqrrV8kLcLEjW4KCmI1vBf0F6hQ2sCYnWQOAONgqoEO72w12NdKo"
 )
 
 # Create data dir if not exists
