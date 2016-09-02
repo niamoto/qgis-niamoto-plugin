@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/taxon_dock.ui'
+# Form implementation generated from reading ui file 'niamoto_plugin/ui/taxon_dock.ui'
 #
-# Created: Mon Aug  8 15:58:11 2016
+# Created: Fri Sep  2 16:18:52 2016
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_TaxonTreeWidget(object):
     def setupUi(self, TaxonTreeWidget):
         TaxonTreeWidget.setObjectName(_fromUtf8("TaxonTreeWidget"))
-        TaxonTreeWidget.resize(661, 624)
+        TaxonTreeWidget.resize(790, 818)
         self.verticalLayout_2 = QtGui.QVBoxLayout(TaxonTreeWidget)
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
         self.tabWidget = QtGui.QTabWidget(TaxonTreeWidget)
@@ -70,6 +70,9 @@ class Ui_TaxonTreeWidget(object):
         self.label_3 = QtGui.QLabel(self.frame)
         self.label_3.setObjectName(_fromUtf8("label_3"))
         self.gridLayout.addWidget(self.label_3, 0, 0, 1, 1)
+        self.wfs_button = QtGui.QPushButton(self.frame)
+        self.wfs_button.setObjectName(_fromUtf8("wfs_button"))
+        self.gridLayout.addWidget(self.wfs_button, 3, 0, 1, 3)
         self.taxon_label = QtGui.QLabel(self.frame)
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Cantarell"))
@@ -84,15 +87,38 @@ class Ui_TaxonTreeWidget(object):
         self.taxon_label.setAlignment(QtCore.Qt.AlignCenter)
         self.taxon_label.setObjectName(_fromUtf8("taxon_label"))
         self.gridLayout.addWidget(self.taxon_label, 0, 1, 1, 2)
-        self.wfs_button = QtGui.QPushButton(self.frame)
-        self.wfs_button.setObjectName(_fromUtf8("wfs_button"))
-        self.gridLayout.addWidget(self.wfs_button, 3, 0, 1, 3)
         self.verticalLayout.addWidget(self.frame)
         self.all_occurrences_button = QtGui.QPushButton(self.occurrences_tab)
         self.all_occurrences_button.setObjectName(_fromUtf8("all_occurrences_button"))
         self.verticalLayout.addWidget(self.all_occurrences_button)
         self.tabWidget.addTab(self.occurrences_tab, _fromUtf8(""))
         self.verticalLayout_2.addWidget(self.tabWidget)
+        self.horizontalLayout_3 = QtGui.QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(_fromUtf8("horizontalLayout_3"))
+        self.label = QtGui.QLabel(TaxonTreeWidget)
+        self.label.setObjectName(_fromUtf8("label"))
+        self.horizontalLayout_3.addWidget(self.label)
+        self.username_label = QtGui.QLabel(TaxonTreeWidget)
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Cantarell"))
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(9)
+        self.username_label.setFont(font)
+        self.username_label.setStyleSheet(_fromUtf8("font: 75 12pt \"Cantarell\";"))
+        self.username_label.setText(_fromUtf8(""))
+        self.username_label.setObjectName(_fromUtf8("username_label"))
+        self.horizontalLayout_3.addWidget(self.username_label)
+        spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem1)
+        self.logout_button = QtGui.QPushButton(TaxonTreeWidget)
+        self.logout_button.setStyleSheet(_fromUtf8("color: red;"))
+        self.logout_button.setCheckable(False)
+        self.logout_button.setFlat(True)
+        self.logout_button.setObjectName(_fromUtf8("logout_button"))
+        self.horizontalLayout_3.addWidget(self.logout_button)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_3)
 
         self.retranslateUi(TaxonTreeWidget)
         self.tabWidget.setCurrentIndex(0)
@@ -107,4 +133,6 @@ class Ui_TaxonTreeWidget(object):
         self.wfs_button.setText(_translate("TaxonTreeWidget", "Ajouter la couche du taxon", None))
         self.all_occurrences_button.setText(_translate("TaxonTreeWidget", "Ajouter toutes les occurrences", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.occurrences_tab), _translate("TaxonTreeWidget", "Occurrences", None))
+        self.label.setText(_translate("TaxonTreeWidget", "Connecté en tant que:", None))
+        self.logout_button.setText(_translate("TaxonTreeWidget", "Déconnexion", None))
 

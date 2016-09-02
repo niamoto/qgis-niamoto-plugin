@@ -17,14 +17,14 @@ DATABASE_VERSION = settings.DATABASE_VERSION_PATH
 TAXA_TREE_PATH = settings.TAXA_TREE_PATH
 
 
-def get_taxa_tree():
+def get_taxa_tree(session):
     """
     Return the cached taxa tree if it is up to date with the server one,
     else download the last one before returning it.
     :return: The taxa tree (nested).
     """
     local_version = _get_local_database_version()
-    server_version = _fetch_database_server_version()
+    server_version = _fetch_database_server_version(session)
     log(u"Local taxa tree version is {}".format(local_version))
     log(u"Server taxa tree version is {}".format(server_version))
     need_download = False
@@ -34,7 +34,7 @@ def get_taxa_tree():
             need_download = True
     if need_download:
         log(u"Downloading the taxa tree is necessary, downloading it...")
-        flat_taxa_tree = _get_taxa_flat_tree_from_server()
+        flat_taxa_tree = _get_taxa_flat_tree_from_server(session)
         taxa_tree = _build_nested_tree(flat_taxa_tree)
         _write_version(server_version)
         _write_taxa_tree(taxa_tree)
@@ -44,17 +44,23 @@ def get_taxa_tree():
     return _get_local_taxa_tree()
 
 
-def _fetch_database_server_version():
+def _fetch_database_server_version(session):
     """
     Fetch the niamoto rest server to get the currently active database version.
     :return: The uuid of the active database version in the server.
     """
-    session = requests.Session()
     url = urlparse.urljoin(
         NIAMOTO_REST_BASE_URL,
         u"plantnote/plantnote_database/?active=True"
     )
-    r = session.get(url)
+    headers = {
+        u"Authorization": u"{} {}".format(
+            session[u"token_type"],
+            session[u"access_token"],
+        )
+    }
+    r = requests.get(url, headers=headers)
+    r.raise_for_status()
     db = json.loads(r.text)['results'][0]
     return db['uuid']
 
@@ -85,14 +91,20 @@ def _get_local_taxa_tree():
         return json.load(taxa_tree_file)
 
 
-def _get_taxa_flat_tree_from_server():
+def _get_taxa_flat_tree_from_server(session):
     """
     Download the currently active flat taxa tree in the niamoto server.
     :return: The flat taxa tree as an array.
     """
     flat_tree_url = NIAMOTO_REST_BASE_URL + u"data/taxon/"
-    session = requests.Session()
-    flat_tree = session.get(flat_tree_url)
+    headers = {
+        u"Authorization": u"{} {}".format(
+            session[u"token_type"],
+            session[u"access_token"],
+        )
+    }
+    flat_tree = requests.get(flat_tree_url, headers=headers)
+    flat_tree.raise_for_status()
     return json.loads(flat_tree.text)
 
 

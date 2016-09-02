@@ -54,6 +54,21 @@ LOG_PATH = SETTINGS.get(
     os.path.join(PACKAGE_ROOT, u"log")
 )
 
+NIAMOTO_OAUTH2_TOKEN_URL = SETTINGS.get(
+    "NIAMOTO_OAUTH2_TOKEN_URL",
+    u"http://niamoto.ird.nc/o/token/"
+)
+
+OAUTH2_CLIENT_ID = SETTINGS.get(
+    "OAUTH2_CLIENT_ID",
+    "abc"
+)
+
+OAUTH2_CLIENT_SECRET = SETTINGS.get(
+    "OAUTH2_CLIENT_SECRET",
+    "abc"
+)
+
 # Create data dir if not exists
 if not os.path.isdir(DATA_PATH):
     os.makedirs(DATA_PATH)
