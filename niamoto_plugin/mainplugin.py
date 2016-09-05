@@ -55,6 +55,8 @@ class NiamotoPlugin(object):
         password = self.authentication_widget.password_edit.text()
         if not username or not password:
             t = u"Les informations de connexion sont incorrectes."
+            st = u"color: red;"
+            self.authentication_widget.status_label.setStyleSheet(st)
             self.authentication_widget.status_label.setText(t)
             self.session = None
             return
@@ -85,6 +87,8 @@ class NiamotoPlugin(object):
                 self.init_taxon_widget()
             elif r.status_code == requests.codes.unauthorized:
                 t = u"Les informations de connexion sont incorrectes."
+                st = u"color: red;"
+                self.authentication_widget.status_label.setStyleSheet(st)
                 self.authentication_widget.status_label.setText(t)
                 self.session = None
             else:
@@ -113,6 +117,7 @@ class NiamotoPlugin(object):
                 whoami = json.loads(r.text)
                 self.session[u"userid"] = whoami[u"id"]
                 self.session[u"useremail"] = whoami[u"email"]
+                self.session[u"full_name"] = whoami[u"full_name"]
                 self.session[u"username"] = whoami[u"username"]
             elif r.status_code == requests.codes.unauthorized:
                 self.authentication_widget.status_label.setText(
@@ -190,7 +195,7 @@ class TaxonTreeWidget(QWidget, Ui_TaxonTreeWidget):
         self.setupUi(self)
         self.iface = iface
         self.session = session
-        self.username_label.setText(self.session[u"username"])
+        self.username_label.setText(self.session[u"full_name"])
         log("Loading taxon tree...")
         root_items = get_taxa_tree(self.session)
         self.taxon_tree_model = TaxonTreeItemModel(root_items)

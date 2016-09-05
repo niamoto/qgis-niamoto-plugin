@@ -144,7 +144,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1,0,0">
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
@@ -157,17 +157,20 @@
        <property name="font">
         <font>
          <family>Cantarell</family>
-         <pointsize>12</pointsize>
+         <pointsize>14</pointsize>
          <weight>9</weight>
          <italic>false</italic>
          <bold>false</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 75 12pt &quot;Cantarell&quot;;</string>
+        <string notr="true">font: 75 14pt &quot;Cantarell&quot;;</string>
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>

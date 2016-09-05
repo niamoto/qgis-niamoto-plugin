@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'niamoto_plugin/ui/taxon_dock.ui'
 #
-# Created: Fri Sep  2 16:18:52 2016
+# Created: Mon Sep  5 14:40:18 2016
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -101,13 +101,14 @@ class Ui_TaxonTreeWidget(object):
         self.username_label = QtGui.QLabel(TaxonTreeWidget)
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Cantarell"))
-        font.setPointSize(12)
+        font.setPointSize(14)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(9)
         self.username_label.setFont(font)
-        self.username_label.setStyleSheet(_fromUtf8("font: 75 12pt \"Cantarell\";"))
+        self.username_label.setStyleSheet(_fromUtf8("font: 75 14pt \"Cantarell\";"))
         self.username_label.setText(_fromUtf8(""))
+        self.username_label.setAlignment(QtCore.Qt.AlignCenter)
         self.username_label.setObjectName(_fromUtf8("username_label"))
         self.horizontalLayout_3.addWidget(self.username_label)
         spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
@@ -118,6 +119,7 @@ class Ui_TaxonTreeWidget(object):
         self.logout_button.setFlat(True)
         self.logout_button.setObjectName(_fromUtf8("logout_button"))
         self.horizontalLayout_3.addWidget(self.logout_button)
+        self.horizontalLayout_3.setStretch(1, 1)
         self.verticalLayout_2.addLayout(self.horizontalLayout_3)
 
         self.retranslateUi(TaxonTreeWidget)
