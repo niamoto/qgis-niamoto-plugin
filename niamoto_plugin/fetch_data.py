@@ -61,7 +61,7 @@ def _fetch_database_server_version(session):
     }
     r = requests.get(url, headers=headers)
     r.raise_for_status()
-    db = json.loads(r.text)['results'][0]
+    db = json.loads(r.text)[0]
     return db['uuid']
 
 

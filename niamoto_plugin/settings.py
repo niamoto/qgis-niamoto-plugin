@@ -1,4 +1,4 @@
-# coding: utf-8
+﻿# coding: utf-8
 
 import os
 import json
@@ -31,12 +31,12 @@ DATA_PATH = SETTINGS.get(
 
 NIAMOTO_REST_BASE_URL = SETTINGS.get(
     "NIAMOTO_REST_BASE_URL",
-    u"http://niamoto.ird.nc/api/1.0/"
+    u"https://niamoto.ird.nc/api/1.0/"
 )
 
 GEOSERVER_BASE_URL = SETTINGS.get(
     "GEOSERVER_BASE_URL",
-    u"http://geoniamoto.ird.nc/geoserver/niamoto"
+    u"https://geoniamoto.ird.nc/geoserver/niamoto"
 )
 
 DATABASE_VERSION_PATH = SETTINGS.get(
@@ -56,7 +56,7 @@ LOG_PATH = SETTINGS.get(
 
 NIAMOTO_OAUTH2_TOKEN_URL = SETTINGS.get(
     "NIAMOTO_OAUTH2_TOKEN_URL",
-    u"http://niamoto.ird.nc/o/token/"
+    u"https://niamoto.ird.nc/o/token/"
 )
 
 OAUTH2_CLIENT_ID = SETTINGS.get(
