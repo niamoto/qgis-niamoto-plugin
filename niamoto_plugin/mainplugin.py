@@ -12,11 +12,12 @@ from niamoto_plugin.fetch_data import get_taxa_tree
 from niamoto_plugin.modelview import TaxonTreeItemModel
 from niamoto_plugin.ui.taxon_dock import Ui_TaxonTreeWidget
 from niamoto_plugin import settings
-from ui.authentication_widget import Ui_AuthenticationWidget
+from niamoto_plugin.ui.authentication_widget import Ui_AuthenticationWidget
+from niamoto_plugin.ui.settings import NiamotoOccurrencesSettings
 from utils import log, construct_wfs_uri
 
 
-NIAMOTO_WFS_URL = settings.GEOSERVER_BASE_URL + '/wfs'
+NIAMOTO_WFS_URL = settings.GEOSERVER_BASE_URL + 'niamoto/wfs'
 
 
 class NiamotoPlugin(object):
@@ -166,14 +167,34 @@ class NiamotoPlugin(object):
         self.authentication_widget = AuthenticationWidget()
         self.authentication_widget.connect_button.clicked.connect(self.connect)
 
+    def init_settings_action(self):
+        self.settings_action = QAction(
+            "Settings",
+            self.iface.mainWindow()
+        )
+        self.settings_action.setObjectName('NiamotoOccurrencesSettings')
+        self.settings_action.setWhatsThis('Niamoto occurrences plugin settings')
+        QObject.connect(
+            self.settings_action,
+            SIGNAL('triggered()'),
+            self.run_settings
+        )
+        self.iface.addPluginToMenu('Niamoto occurrences', self.settings_action)
+
+    def run_settings(self):
+        dialog = NiamotoOccurrencesSettings(self.iface.mainWindow())
+        if dialog.exec_() == QDialog.Accepted:
+            dialog.write_settings()
+
     def initGui(self):
+        self.init_settings_action()
         self.iface.addDockWidget(Qt.RightDockWidgetArea, self.taxon_dock)
 
     def run(self):
         self.taxon_dock.show()
 
     def unload(self):
-        pass
+        self.iface.removePluginMenu('Niamoto occurrences', self.settings_action)
 
 
 class AuthenticationWidget(QWidget, Ui_AuthenticationWidget):

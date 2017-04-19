@@ -29,15 +29,38 @@ DATA_PATH = SETTINGS.get(
     os.path.join(PACKAGE_ROOT, u"data")
 )
 
-NIAMOTO_REST_BASE_URL = SETTINGS.get(
+NIAMOTO_BASE_URL = SETTINGS.get(
     "NIAMOTO_REST_BASE_URL",
-    u"https://niamoto.ird.nc/api/1.0/"
+    u"https://niamoto.io/"
 )
+NIAMOTO_REST_BASE_URL = NIAMOTO_BASE_URL + u"api/1.0/"
+
+
+def set_niamoto_base_url(value):
+    global SETTINGS, \
+        NIAMOTO_BASE_URL, \
+        NIAMOTO_REST_BASE_URL,\
+        NIAMOTO_OAUTH2_TOKEN_URL
+    NIAMOTO_BASE_URL = value
+    NIAMOTO_REST_BASE_URL = NIAMOTO_BASE_URL + u"api/1.0/"
+    NIAMOTO_OAUTH2_TOKEN_URL = NIAMOTO_BASE_URL + u"o/token/"
+    SETTINGS['NIAMOTO_BASE_URL'] = value
+    write_settings()
+
 
 GEOSERVER_BASE_URL = SETTINGS.get(
     "GEOSERVER_BASE_URL",
-    u"https://geoniamoto.ird.nc/geoserver/niamoto"
+    u"https://geo.niamoto.io/geoserver/"
 )
+
+
+def set_geoserver_base_url(value):
+    global SETTINGS,\
+        GEOSERVER_BASE_URL
+    GEOSERVER_BASE_URL = value
+    SETTINGS['GEOSERVER_BASE_URL'] = value
+    write_settings()
+
 
 DATABASE_VERSION_PATH = SETTINGS.get(
     "DATABASE_VERSION_PATH",
@@ -54,16 +77,11 @@ LOG_PATH = SETTINGS.get(
     os.path.join(PACKAGE_ROOT, u"log")
 )
 
-NIAMOTO_OAUTH2_TOKEN_URL = SETTINGS.get(
-    "NIAMOTO_OAUTH2_TOKEN_URL",
-    u"https://niamoto.ird.nc/o/token/"
-)
-
+NIAMOTO_OAUTH2_TOKEN_URL = NIAMOTO_BASE_URL + u"o/token/"
 OAUTH2_CLIENT_ID = SETTINGS.get(
     "OAUTH2_CLIENT_ID",
     "ystnxvD5Sjnd7UtAV3Qj3Hou8ZKAZtlzJEnHySoX"
 )
-
 OAUTH2_CLIENT_SECRET = SETTINGS.get(
     "OAUTH2_CLIENT_SECRET",
     "5HAIZVFjFF0MlK1CJE4tfHbNk734qqyxZ9XLz20ZvtQbrxd61gIhQ6FhyW0jxju26GTJtbhxJP6oTqrrV8kLcLEjW4KCmI1vBf0F6hQ2sCYnWQOAONgqoEO72w12NdKo"
