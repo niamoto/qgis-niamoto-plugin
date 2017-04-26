@@ -12,6 +12,8 @@ SETTINGS = dict()
 
 def load_settings():
     global SETTINGS
+    if not os.path.exists(SETTINGS_FILE):
+        write_settings()
     with open(SETTINGS_FILE, 'r') as settings_file:
         SETTINGS = json.load(settings_file)
 

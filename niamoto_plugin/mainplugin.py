@@ -115,7 +115,7 @@ class NiamotoPlugin(object):
             )
             r.raise_for_status()
             if r.status_code == requests.codes.ok:
-                whoami = json.loads(r.text)
+                whoami = json.loads(r.content.decode('utf-8'))
                 self.session[u"userid"] = whoami[u"id"]
                 self.session[u"useremail"] = whoami[u"email"]
                 self.session[u"full_name"] = whoami[u"full_name"]
