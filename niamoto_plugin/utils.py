@@ -40,7 +40,9 @@ def get_logger():
 def construct_wfs_uri(url, typename, **kwargs):
     params = {
         'url': url,
-        'typename': typename
+        'typename': typename,
+        'request': 'GetFeature',
+        'outputformat': 'GML2',
     }
     params.update(kwargs)
     return ' '.join(['{}="{}"'.format(k, v) for k, v in params.items()])
